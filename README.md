@@ -1,4 +1,4 @@
-##My TTEC project
+My TTEC project
 
 Test phone number - +1 866-582-2981
 Vanity number lookup site to enter phone number without country code. Ex. 9403895512 https://vanitynumbercloudfrontwebsite414.s3.amazonaws.com/index.html
