@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vanity Numbers Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #vanityNumbers { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Vanity Numbers Lookup</h1>
+    <input type="text" id="phoneNumberInput" placeholder="Enter Phone Number" />
+    <button onclick="fetchVanityNumbers()">Lookup</button>
+    <div id="vanityNumbers"></div>
+
+    <script>
+        async function fetchVanityNumbers() {
+            const phoneNumber = document.getElementById('phoneNumberInput').value;
+            const apiUrl = 'https://d6ttk762td.execute-api.us-east-1.amazonaws.com/default/VanityCloudFrontBackEnd';
+            const response = await fetch(`${apiUrl}?phoneNumber=${phoneNumber}`);
+            const data = await response.json();
+
+            const vanityNumbersDiv = document.getElementById('vanityNumbers');
+            vanityNumbersDiv.innerHTML = '';
+
+            if (data && data.data) {
+                Object.keys(data.data).forEach(key => {
+                    if (key.startsWith('vanityNumber')) {
+                        const div = document.createElement('div');
+                        div.textContent = data.data[key];
+                        vanityNumbersDiv.appendChild(div);
+                    }
+                });
+            } else {
+                vanityNumbersDiv.innerHTML = 'No vanity numbers found for this phone number.';
+            }
+        }
+    </script>
+</body>
+</html>

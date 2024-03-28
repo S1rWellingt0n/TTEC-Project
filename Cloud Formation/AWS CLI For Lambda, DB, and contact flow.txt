@@ -1,0 +1,3 @@
+aws cloudformation create-stack --stack-name MyContactCenterResources --template-body file://mytemplate.yaml --parameters ParameterKey=ConnectInstanceArn,ParameterValue=[Full ARN/Account ID here Example arn:aws:connect:us-east-1:123456789012:instance/your-instance-id]
+
+Replace file://mytemplate.yaml with the path to your CloudFormation template file and adjust the parameter value for ConnectInstanceArn to your actual Amazon Connect instance ARN.
